@@ -76,7 +76,7 @@ server {
 
 与我们预期是一样的。
 
-如果这里不调用`ngx.encode_args` ，可能就会比较丑了，看下面例子：
+如果这里不调用 `ngx.encode_args`，可能就会比较丑了，看下面例子：
 
 ```lua
 local res = ngx.location.capture('/print_param',
@@ -89,7 +89,7 @@ local res = ngx.location.capture('/print_param',
 ngx.say(res.body)
 ```
 
-PS：对于 ngx.location.capture 这里有个小技巧，args 参数可以接受字符串或Lua 表的，这样我们的代码就更加简洁直观。
+PS：对于 ngx.location.capture 这里有个小技巧，args 参数可以接受字符串或 Lua 表的，这样我们的代码就更加简洁直观。
 
 ```lua
 local res = ngx.location.capture('/print_param',

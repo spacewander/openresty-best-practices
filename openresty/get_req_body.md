@@ -1,10 +1,10 @@
 # 获取请求 body
 
-在 Nginx 的典型应用场景中，几乎都是只读取 HTTP 头即可，例如负载均衡、正反向代理等场景。但是对于 API Server 或者 Web Application ，对 body 可以说就比较敏感了。由于 OpenResty 基于 Nginx ，所以天然的对请求 body 的读取细节与其他成熟 Web 框架有些不同。
+在 Nginx 的典型应用场景中，几乎都是只读取 HTTP 头即可，例如负载均衡、正反向代理等场景。但是对于 API Server 或者 Web Application，对 body 可以说就比较敏感了。由于 OpenResty 基于 Nginx，所以天然的对请求 body 的读取细节与其他成熟 Web 框架有些不同。
 
-### 最简单的 “Hello \*\*\*\*”
+### 最简单的“Hello \*\*\*\*”
 
-我们先来构造最简单的一个请求，POST 一个名字给服务端，服务端应答一个 “Hello \*\*\*\*”。
+我们先来构造最简单的一个请求，POST 一个名字给服务端，服务端应答一个“Hello \*\*\*\*”。
 
 ```nginx
 http {
@@ -28,7 +28,7 @@ http {
 hello nil
 ```
 
-大家可以看到 data 部分获取为空，如果你熟悉其他 web 开发框架，估计立刻就觉得 OpenResty 弱爆了。查阅一下官方 wiki 我们很快知道，原来我们还需要添加指令 lua_need_request_body 。究其原因，主要是 Nginx 诞生之初主要是为了解决负载均衡情况，而这种情况，是不需要读取 body 就可以决定负载策略的，所以这个点对于 API Server 和 Web Application 开发的同学有点怪。
+大家可以看到 data 部分获取为空，如果你熟悉其他 web 开发框架，估计立刻就觉得 OpenResty 弱爆了。查阅一下官方 wiki 我们很快知道，原来我们还需要添加指令 lua_need_request_body。究其原因，主要是 Nginx 诞生之初主要是为了解决负载均衡情况，而这种情况，是不需要读取 body 就可以决定负载策略的，所以这个点对于 API Server 和 Web Application 开发的同学有点怪。
 
 参看下面例子：
 
